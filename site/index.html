@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en" data-theme="board">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="q is a navigation wheel for the web. Hold Q, point at a destination, and let go. One hand on the keyboard, only a mouse, or both."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316182a'/%3E%3Ccircle cx='14' cy='14' r='6' fill='none' stroke='%23ffd23f' stroke-width='4'/%3E%3Cpath d='M22 8v19' stroke='%23ffd23f' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <title>q</title>
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to the content</a>
+    <header class="top">
+      <a class="wordmark" href="#home" aria-label="q, home">q</a>
+      <p class="location" id="location" role="status">Home</p>
+      <a class="source" href="https://github.com/UlloaSP/q">GitHub</a>
+    </header>
+
+    <main id="content">
+      <section class="view" id="home">
+        <div class="hero">
+          <button class="keycap" id="keycap" type="button" aria-label="Open the wheel">
+            <span class="keycap-top"><span class="keycap-legend">q</span></span>
+          </button>
+          <div class="hero-copy">
+            <h1 tabindex="-1">Hold Q.<br />Point.<br />Let go.</h1>
+            <p>
+              q is a navigation wheel for the web. It replaces the navbar, the sidebar and the
+              hamburger. This site has no menu, so try it here: every page is one gesture away.
+            </p>
+          </div>
+        </div>
+        <div class="ways">
+          <article>
+            <h2>One hand, no mouse</h2>
+            <p>
+              Hold <kbd>Q</kbd> and press the key on a slot. The keys sit around Q, so <kbd>Q</kbd>
+              <kbd>3</kbd> always lands on Controls. <kbd>Space</kbd> goes back a level.
+            </p>
+          </article>
+          <article>
+            <h2>Mouse, no keyboard</h2>
+            <p>
+              Click the Q in the corner, then click a slot. Rest on a group and it opens by itself.
+              Right click goes back. You can miss the ring: the space around it still counts.
+            </p>
+          </article>
+          <article>
+            <h2>Both</h2>
+            <p>
+              Hold <kbd>Q</kbd>, point at a slot, and release. Tap <kbd>Q</kbd> instead and the
+              wheel stays open until you choose or press <kbd>Esc</kbd>.
+            </p>
+          </article>
+        </div>
+        <div class="prose">
+          <h2>Why Q</h2>
+          <p>
+            Almost nothing binds it. Browsers and operating systems leave a bare Q alone, and it
+            sits under your left hand, next to the number row. You can change the key.
+          </p>
+          <p>
+            q is written in TypeScript, has no dependencies and needs no framework. Its styles are
+            one plain CSS file.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#start">Get started</a>, or hold <kbd>Q</kbd> and press <kbd>2</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="start">
+        <h1 tabindex="-1">Get started</h1>
+        <div class="prose">
+          <h2>Install</h2>
+          <pre><code>npm install @ziran/q</code></pre>
+          <h2>Mount a wheel</h2>
+          <pre><code>import { createQ } from '@ziran/q';
+import '@ziran/q/styles.css';
+
+const q = createQ({
+  items: [
+    { id: 'home', label: 'Home', href: '/' },
+    {
+      id: 'projects',
+      label: 'Projects',
+      description: 'Everything in motion.',
+      children: [
+        { id: 'atlas', label: 'Atlas', href: '/projects/atlas' },
+        { id: 'orbit', label: 'Orbit', href: '/projects/orbit' },
+      ],
+    },
+  ],
+});</code></pre>
+          <p>
+            That is a working wheel. Hold <kbd>Q</kbd> and it opens; choose a slot and q follows its
+            <code>href</code>.
+          </p>
+          <h2>Use your router</h2>
+          <p>Pass <code>onNavigate</code> and q calls it instead of following the link.</p>
+          <pre><code>createQ({
+  items,
+  onNavigate: ({ item, path }) => router.push(item.href),
+});</code></pre>
+          <h2>Clean up</h2>
+          <p>
+            Importing the package is safe on the server. Call <code>createQ</code> in the browser,
+            once per document, and call <code>destroy</code> when the page or component goes away.
+          </p>
+          <pre><code>q.destroy();</code></pre>
+        </div>
+        <p class="next">
+          Next: <a href="#controls">Controls</a>, or hold <kbd>Q</kbd> and press <kbd>3</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="controls">
+        <h1 tabindex="-1">Controls</h1>
+        <p>
+          The wheel always opens at the top level, so the same keys always lead to the same place.
+        </p>
+        <div class="columns">
+          <div>
+            <h2>Keyboard</h2>
+            <dl class="keys">
+              <dt><kbd>Q</kbd> hold</dt>
+              <dd>Open. Release on a slot to go there.</dd>
+              <dt><kbd>Q</kbd> tap</dt>
+              <dd>Open and stay open. Tap again to close.</dd>
+              <dt><kbd>1</kbd> to <kbd>5</kbd>, <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd></dt>
+              <dd>Go to that slot, or open that group.</dd>
+              <dt><kbd>Space</kbd> <kbd>Backspace</kbd></dt>
+              <dd>Back one level.</dd>
+              <dt><kbd>←</kbd> <kbd>→</kbd></dt>
+              <dd>Move around the ring.</dd>
+              <dt><kbd>Enter</kbd></dt>
+              <dd>Confirm the highlighted slot.</dd>
+              <dt><kbd>Esc</kbd></dt>
+              <dd>Close without going anywhere.</dd>
+            </dl>
+          </div>
+          <div>
+            <h2>Pointer and touch</h2>
+            <dl class="keys">
+              <dt>Corner button</dt>
+              <dd>Open and stay open.</dd>
+              <dt>Click or tap a slot</dt>
+              <dd>Go there, or open that group.</dd>
+              <dt>Rest on a group</dt>
+              <dd>It opens when the arc around it closes.</dd>
+              <dt>Rest on Back</dt>
+              <dd>Back one level.</dd>
+              <dt>Right click</dt>
+              <dd>Back one level. At the top level, close.</dd>
+              <dt>Click outside</dt>
+              <dd>Close without going anywhere.</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="prose">
+          <h2>Details that matter</h2>
+          <p>
+            Slots without a key of their own take the next free one from
+            <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd> <kbd>W</kbd>
+            <kbd>E</kbd> <kbd>R</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd>
+            <kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd> <kbd>V</kbd>, all within reach of the hand
+            holding Q.
+          </p>
+          <p>
+            Slots that appear under a resting pointer do nothing until the pointer moves. One long
+            hover cannot fall through several levels.
+          </p>
+          <p>
+            When a slot has the focus, after the arrow keys or Tab, <kbd>Space</kbd> and
+            <kbd>Enter</kbd> press it, as they do on any button.
+          </p>
+          <p>
+            q ignores its keys while you type in a field or in editable content, and while Ctrl, Alt
+            or the Command key is held.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#items">Items</a>, or hold <kbd>Q</kbd> and press <kbd>4</kbd>
+          <kbd>1</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="items">
+        <h1 tabindex="-1">Items</h1>
+        <p>
+          The wheel draws a tree. An item with <code>children</code> is a group; any other item is a
+          destination.
+        </p>
+        <div class="table" role="region" aria-label="Item fields" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Type</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><code>id</code></th>
+                <td><code>string</code></td>
+                <td>Required. Unique across the whole tree.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>label</code></th>
+                <td><code>string</code></td>
+                <td>Required. The name on the slot.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>description</code></th>
+                <td><code>string</code></td>
+                <td>Shown in the center while the slot is highlighted.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>icon</code></th>
+                <td><code>string</code></td>
+                <td>Text drawn above the label. Use <code>renderItem</code> for anything else.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>hotkey</code></th>
+                <td><code>string</code></td>
+                <td>One character, unique among its siblings. Defaults to the next free key.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>href</code></th>
+                <td><code>string</code></td>
+                <td>Where to go. A group cannot have one.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>disabled</code></th>
+                <td><code>boolean</code></td>
+                <td>The slot stays visible and cannot be chosen.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>children</code></th>
+                <td><code>QItem[]</code></td>
+                <td>Makes the item a group. There is no depth limit.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>data</code></th>
+                <td><code>unknown</code></td>
+                <td>Anything your app needs back in <code>onNavigate</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <p>
+            Between three and eight slots per level read well. The trigger key and the back key
+            cannot be used as a <code>hotkey</code>.
+          </p>
+          <p>
+            Treat the tree as immutable. To change it, call <code>setItems</code> with a new one.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#options">Options</a>, or hold <kbd>Q</kbd> and press <kbd>4</kbd>
+          <kbd>2</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="options">
+        <h1 tabindex="-1">Options</h1>
+        <p>Everything <code>createQ</code> accepts. Only <code>items</code> is required.</p>
+        <div class="table" role="region" aria-label="Options" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Option</th>
+                <th scope="col">Default</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><code>items</code></th>
+                <td>Required</td>
+                <td>The tree of destinations and groups.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>onNavigate</code></th>
+                <td>Follows <code>href</code></td>
+                <td>Receives <code>{ item, path }</code> when a destination is chosen.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>triggerKey</code></th>
+                <td><code>'q'</code></td>
+                <td>The key that opens the wheel.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>backKey</code></th>
+                <td>Space</td>
+                <td>Goes back one level. Backspace always works too.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>tapThreshold</code></th>
+                <td><code>250</code></td>
+                <td>A press shorter than this, in milliseconds, leaves the wheel open.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>expandDelay</code></th>
+                <td><code>450</code></td>
+                <td>How long the pointer rests on a group before it opens.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>backDelay</code></th>
+                <td><code>600</code></td>
+                <td>The same, for Back.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>hoverMoveThreshold</code></th>
+                <td><code>12</code></td>
+                <td>Pixels the pointer must travel before new slots react.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>trigger</code></th>
+                <td><code>true</code></td>
+                <td>Adds the corner button.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>target</code></th>
+                <td><code>document.body</code></td>
+                <td>Where the wheel is mounted.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>label</code></th>
+                <td><code>'Quick navigation'</code></td>
+                <td>Accessible name of the wheel and the corner button.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>className</code></th>
+                <td>None</td>
+                <td>Extra class on the wheel and the corner button.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>renderItem</code></th>
+                <td>Icon, label, key</td>
+                <td>Returns the content of a slot as a DOM node.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>renderCenter</code></th>
+                <td>Title and hint</td>
+                <td>Returns the content of the center as a DOM node.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <p>
+            You can feel the three delays before choosing them:
+            <a href="#timing">Timing</a> has a dial for each.
+          </p>
+          <p>
+            Content from <code>renderItem</code> should not be interactive. The slot is already a
+            button.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#instance">Instance</a>, or hold <kbd>Q</kbd> and press <kbd>4</kbd>
+          <kbd>3</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="instance">
+        <h1 tabindex="-1">Instance</h1>
+        <p>
+          <code>createQ</code> returns the wheel. You rarely need more than <code>destroy</code>.
+        </p>
+        <div class="table" role="region" aria-label="Instance members" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><code>open()</code></th>
+                <td>Opens at the top level and stays open.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>close()</code></th>
+                <td>Closes without going anywhere.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>toggle()</code></th>
+                <td>Opens or closes.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>select(id)</code></th>
+                <td>Goes to a destination, or opens a group, of the current level.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>highlight(id)</code></th>
+                <td>Highlights a slot. Pass <code>null</code> to clear.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>back()</code></th>
+                <td>Back one level.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>setItems(items)</code></th>
+                <td>Replaces the tree and returns to the top level.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>getState()</code></th>
+                <td>The current state, frozen.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>subscribe(listener)</code></th>
+                <td>Calls the listener now and on every change. Returns a function to stop.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>element</code></th>
+                <td>The <code>&lt;dialog&gt;</code> of the wheel.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>destroy()</code></th>
+                <td>Removes the DOM, the timers and every listener.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <h2>State</h2>
+          <pre><code>interface QState {
+  isOpen: boolean;
+  path: string[];          // IDs of the open groups
+  parent: QItem | null;    // the group being explored
+  items: QItem[];          // the slots of the current level
+  activeId: string | null; // the highlighted slot
+  canGoBack: boolean;
+}</code></pre>
+        </div>
+        <p class="next">
+          Next: <a href="#headless">Headless</a>, or hold <kbd>Q</kbd> and press <kbd>4</kbd>
+          <kbd>4</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="headless">
+        <h1 tabindex="-1">Headless</h1>
+        <p>
+          The controller holds the state and nothing else: no DOM, no listeners, no styles. Use it
+          to draw the wheel yourself, in a framework or on a canvas.
+        </p>
+        <div class="prose">
+          <pre><code>import { createQController } from '@ziran/q/headless';
+
+const navigation = createQController({ items, onNavigate });
+const stop = navigation.subscribe((state) =&gt; render(state));
+
+navigation.open();
+navigation.select('projects'); // opens the group
+navigation.select('atlas');    // calls onNavigate and closes
+
+stop();</code></pre>
+          <p>
+            It has the same methods as the instance, except <code>element</code> and
+            <code>destroy</code>. It runs in Node.
+          </p>
+          <p>
+            Keys, hold and tap, resting the pointer and the corner button belong to
+            <code>createQ</code>. With the controller, they are yours to build.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#browsers">Browsers</a>, or hold <kbd>Q</kbd> and press <kbd>4</kbd>
+          <kbd>5</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="browsers">
+        <h1 tabindex="-1">Browsers</h1>
+        <div class="prose">
+          <h2>Support</h2>
+          <p>
+            q needs <code>&lt;dialog&gt;</code> and Pointer Events, which every current browser has.
+            The closing animation needs <code>@starting-style</code>; without it the wheel closes
+            instantly.
+          </p>
+          <h2>Accessibility</h2>
+          <p>
+            The wheel is a modal dialog. While it is open, the page behind it is inert and the focus
+            stays inside. When it closes, the focus returns to where it was.
+          </p>
+          <p>
+            Every slot is a button with a name and its key. Arrow keys and Tab reach all of them,
+            Back included. The center announces the highlighted slot.
+          </p>
+          <p>Animations are off for anyone who asks their system for reduced motion.</p>
+          <h2>What is yours to check</h2>
+          <p>
+            Contrast, if you change the colors. Labels, if you replace the content of a slot. And
+            after navigating, move the focus to the new page, as this site does.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#theming">Theming</a>, or hold <kbd>Q</kbd> and press <kbd>5</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="theming">
+        <h1 tabindex="-1">Theming</h1>
+        <p>
+          The stylesheet is optional and plain CSS. To restyle the wheel, override its variables.
+        </p>
+        <div class="prose">
+          <pre><code>.q-root,
+.q-trigger {
+  --q-surface: #ffffff;   /* center and corner button */
+  --q-slot: #ffffff;
+  --q-text: #16182a;
+  --q-muted: #565a75;     /* descriptions */
+  --q-accent: #ffd23f;    /* highlight and progress */
+  --q-on-accent: #16182a; /* text over the accent */
+  --q-backdrop: rgb(16 27 110 / 70%);
+  --q-font: 'Bricolage Grotesque', sans-serif;
+  --q-size: min(620px, calc(100vw - 16px), calc(100dvh - 16px));
+}</code></pre>
+          <p>
+            Those are the values of Cobalt. To see them, hold <kbd>Q</kbd> and press <kbd>W</kbd>
+            <kbd>1</kbd> <kbd>2</kbd>.
+          </p>
+          <h2>State</h2>
+          <p>Each <code>.q-slot</code> says what is happening to it:</p>
+          <dl class="keys">
+            <dt><code>data-active</code></dt>
+            <dd>Highlighted by the pointer or the keyboard.</dd>
+            <dt><code>data-dwelling</code></dt>
+            <dd>The pointer is resting on it and it is about to open.</dd>
+            <dt><code>data-selected</code></dt>
+            <dd>Just chosen, while the wheel closes.</dd>
+            <dt><code>data-group</code></dt>
+            <dd>It has children.</dd>
+          </dl>
+          <h2>More than one theme</h2>
+          <p>
+            Pass <code>className</code> to <code>createQ</code> and scope the variables to it, or
+            scope them to an attribute on the page, as this site does.
+          </p>
+        </div>
+        <p class="next">
+          Next: <a href="#timing">Timing</a>, or hold <kbd>Q</kbd> and press <kbd>W</kbd>
+          <kbd>2</kbd>.
+        </p>
+      </section>
+
+      <section class="view" id="timing">
+        <h1 tabindex="-1">Timing</h1>
+        <p>Change a value, then open the wheel to feel the difference.</p>
+        <form class="dials" id="dials">
+          <label for="expandDelay">Rest on a group to open it</label>
+          <input id="expandDelay" type="range" min="150" max="1200" step="50" value="450" />
+          <output for="expandDelay"></output>
+          <label for="backDelay">Rest on Back to go back</label>
+          <input id="backDelay" type="range" min="150" max="1200" step="50" value="600" />
+          <output for="backDelay"></output>
+          <label for="tapThreshold">Longest press that counts as a tap</label>
+          <input id="tapThreshold" type="range" min="0" max="600" step="50" value="250" />
+          <output for="tapThreshold"></output>
+        </form>
+        <p class="next">
+          Next: the example app. Hold <kbd>Q</kbd>, press <kbd>W</kbd> <kbd>3</kbd> and keep going.
+        </p>
+      </section>
+
+      <section class="view" id="place">
+        <h1 tabindex="-1" id="place-title">Example app</h1>
+        <p id="place-path" class="path"></p>
+        <p>
+          This is a page of an example app, several levels deep. In yours,
+          <code>onNavigate</code> receives the item and its path, and your router takes it from
+          there.
+        </p>
+        <p class="next">
+          Back to <a href="#home">Home</a>, or hold <kbd>Q</kbd> and press <kbd>1</kbd>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="bottom">
+      <p>MIT licensed. Made by Pablo Ulloa Santín.</p>
+    </footer>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
