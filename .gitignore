@@ -1,0 +1,17 @@
+node_modules/
+dist/
+site/dist/
+coverage/
+.vite/
+.vite-plus/
+*.tgz
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+.npmrc
