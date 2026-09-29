@@ -84,10 +84,10 @@
         <h1 tabindex="-1">Get started</h1>
         <div class="prose">
           <h2>Install</h2>
-          <pre><code>npm install @ziran/q</code></pre>
+          <pre><code>npm install @ziran-project/q</code></pre>
           <h2>Mount a wheel</h2>
-          <pre><code>import { createQ } from '@ziran/q';
-import '@ziran/q/styles.css';
+          <pre><code>import { createQ } from '@ziran-project/q';
+import '@ziran-project/q/styles.css';
 
 const q = createQ({
   items: [
@@ -462,7 +462,7 @@ const q = createQ({
           to draw the wheel yourself, in a framework or on a canvas.
         </p>
         <div class="prose">
-          <pre><code>import { createQController } from '@ziran/q/headless';
+          <pre><code>import { createQController } from '@ziran-project/q/headless';
 
 const navigation = createQController({ items, onNavigate });
 const stop = navigation.subscribe((state) =&gt; render(state));

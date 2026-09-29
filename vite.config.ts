@@ -9,8 +9,8 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: [
-      { find: '@ziran/q/styles.css', replacement: path('./src/styles.css') },
-      { find: '@ziran/q', replacement: path('./src/index.ts') },
+      { find: '@ziran-project/q/styles.css', replacement: path('./src/styles.css') },
+      { find: '@ziran-project/q', replacement: path('./src/index.ts') },
     ],
   },
   server: { port: 5173, strictPort: true },

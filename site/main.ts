@@ -1,6 +1,6 @@
-import { createQ } from '@ziran/q';
-import type { QInstance, QItem, QNavigation } from '@ziran/q';
-import '@ziran/q/styles.css';
+import { createQ } from '@ziran-project/q';
+import type { QInstance, QItem, QNavigation } from '@ziran-project/q';
+import '@ziran-project/q/styles.css';
 import './style.css';
 import { items } from './items.ts';
 import type { Destination } from './items.ts';

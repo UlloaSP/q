@@ -1,4 +1,4 @@
-import type { QItem } from '@ziran/q';
+import type { QItem } from '@ziran-project/q';
 
 /** What a leaf does when chosen: show a page, or restyle the site. */
 export type Destination = { readonly view: string } | { readonly theme: string };

@@ -1,5 +1,5 @@
 {
-  "name": "@ziran/q",
+  "name": "@ziran-project/q",
   "version": "0.1.0",
   "description": "Hold Q, point at a destination, and let go. A radial navigation wheel for keyboard and pointer, in TypeScript.",
   "keywords": [
