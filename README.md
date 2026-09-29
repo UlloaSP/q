@@ -11,14 +11,14 @@ Because almost nothing binds it. Browsers and operating systems leave a bare Q a
 ## Installation
 
 ```bash
-npm install @ziran/q
+npm install @ziran-project/q
 ```
 
 ## Usage
 
 ```ts
-import { createQ } from '@ziran/q';
-import '@ziran/q/styles.css';
+import { createQ } from '@ziran-project/q';
+import '@ziran-project/q/styles.css';
 
 const q = createQ({
   items: [

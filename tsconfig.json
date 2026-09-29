@@ -4,8 +4,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "paths": {
-      "@ziran/q": ["./src/index.ts"],
-      "@ziran/q/headless": ["./src/controller.ts"]
+      "@ziran-project/q": ["./src/index.ts"],
+      "@ziran-project/q/headless": ["./src/controller.ts"]
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "strict": true,

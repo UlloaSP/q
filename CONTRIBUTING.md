@@ -58,4 +58,4 @@ For anything that is not a small fix, open an issue before writing code. It will
 
 ## Releasing
 
-Maintainers publish by creating a GitHub release. The tag is the version: `v0.2.0` publishes `@ziran/q@0.2.0` through npm trusted publishing. There is nothing to run locally.
+Maintainers publish by creating a GitHub release. The tag is the version: `v0.2.0` publishes `@ziran-project/q@0.2.0` through npm trusted publishing. There is nothing to run locally.

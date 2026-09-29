@@ -1,6 +1,6 @@
 # q
 
-q is a radial navigation wheel for the web, published as `@ziran/q`. A user holds Q, points at a destination and lets go. It is meant to be the only navigation an app needs.
+q is a radial navigation wheel for the web, published as `@ziran-project/q`. A user holds Q, points at a destination and lets go. It is meant to be the only navigation an app needs.
 
 It is a small TypeScript library with no runtime dependencies and no framework, plus a site that is navigated with the wheel itself.
 
@@ -43,7 +43,7 @@ No runtime dependencies. No build step for styles. Do not introduce machinery be
 
 ## Where code lives
 
-- `src/controller.ts` is the state: open, path, highlight. No DOM. It is the `@ziran/q/headless` entry and must import in Node.
+- `src/controller.ts` is the state: open, path, highlight. No DOM. It is the `@ziran-project/q/headless` entry and must import in Node.
 - `src/items.ts` validates the tree and assigns keys.
 - `src/wheel.ts` is `createQ`: it turns keyboard, pointer and focus events into controller calls. Interaction rules live here.
 - `src/view.ts` builds and updates the DOM. It decides nothing.
